@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 Evolution | Engineering Through Time</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #06111f;
+  --surface: #0c1d30;
+  --surface2: #102740;
+  --blue: #168cff;
+  --light-blue: #62b5ff;
+  --white: #f4f8ff;
+  --muted: #9aacc1;
+  --border: rgba(130,175,220,.17);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6,17,31,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.nav-links a:hover {
+  color: var(--light-blue);
+}
+
+.nav-links .nav-button {
+  background: var(--blue);
+  color: white;
+  padding: 10px 17px;
+  border-radius: 5px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(6,17,31,.98) 15%, rgba(6,17,31,.82) 55%, rgba(6,17,31,.55)),
+    url("https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=1800&q=85");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--blue), transparent);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  padding: 100px 0;
+}
+
+.eyebrow {
+  color: var(--light-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 900;
+  letter-spacing: -5px;
+  line-height: 1.02;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: var(--light-blue);
+}
+
+.hero p {
+  color: #c0cede;
+  font-size: 17px;
+  max-width: 620px;
+  margin-bottom: 35px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: .25s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0073e6;
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  border: 1px solid rgba(255,255,255,.35);
+  color: white;
+}
+
+.btn-outline:hover {
+  border-color: var(--light-blue);
+  color: var(--light-blue);
+}
+
+/* GENERAL SECTIONS */
+
+section {
+  padding: 100px 0;
+  scroll-margin-top: 75px;
+}
+
+.section-label {
+  color: var(--light-blue);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(30px, 5vw, 45px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 15px;
+}
+
+.section-description {
+  color: var(--muted);
+  max-width: 650px;
+  margin-bottom: 45px;
+}
+
+/* INTRO */
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.intro-text {
+  color: var(--muted);
+}
+
+.intro-panel {
+  background: linear-gradient(145deg, #102b47, #0a192b);
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.intro-panel h3 {
+  color: var(--light-blue);
+  margin-bottom: 12px;
+}
+
+.intro-panel p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* HISTORY */
+
+#history {
+  background: #091827;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 27px;
+  border-radius: 9px;
+  transition: .3s;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue);
+}
+
+.year {
+  color: var(--light-blue);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.timeline-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.timeline-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* INNOVATIONS */
+
+.innovation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.innovation-card {
+  background: var(--surface);
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition: .3s;
+}
+
+.innovation-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-5px);
+}
+
+.innovation-number {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.innovation-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.innovation-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* DOCUMENTARY */
+
+#documentary {
+  background: #091827;
+}
+
+.video-container {
+  background: #030a12;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px;
+}
+
+.video-placeholder h3 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.video-placeholder p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* LINKS */
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.link-card {
+  display: block;
+  padding: 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: .3s;
+}
+
+.link-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+}
+
+.link-card h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+.link-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.link-arrow {
+  color: var(--light-blue);
+  display: inline-block;
+  margin-top: 17px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* GAME */
+
+#game {
+  background: #091827;
+}
+
+.game-box {
+  max-width: 650px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 35px;
+  border-radius: 10px;
+}
+
+.game-box p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#reaction-area {
+  height: 220px;
+  background: #102740;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 700;
+  transition: background .2s;
+  user-select: none;
+}
+
+#reaction-area.waiting {
+  background: #a52a36;
+}
+
+#reaction-area.ready {
+  background: #087c51;
+}
+
+#reaction-area:focus-visible {
+  outline: 3px solid var(--light-blue);
+  outline-offset: 3px;
+}
+
+#game-result {
+  margin-top: 20px;
+  color: var(--light-blue);
+  font-weight: 700;
+}
+
+/* CREDITS + FOOTER */
+
+#credits {
+  text-align: center;
+}
+
+.credit-text {
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+footer span {
+  color: var(--light-blue);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .nav-inner {
+    padding: 15px 0;
+    flex-direction: column;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .intro-grid,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .innovation-grid,
+  .links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+}
+
+@media (max-width: 520px) {
+  .innovation-grid,
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+  .hero {
+    min-height: 570px;
+  }
+
+  .game-box {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#home" class="logo">F1<span>EVOLUTION</span></a>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#history">History</a>
+      <a href="#innovations">Innovations</a>
+      <a href="#documentary">Documentary</a>
+      <a href="#links">Links</a>
+      <a href="#game">Game</a>
+      <a href="#credits" class="nav-button">Credits</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="container hero-content">
+    <div class="eyebrow">The Engineering Behind Formula 1</div>
+
+    <h1>EVOLUTION<br>OF <span>F1</span></h1>
+
+    <p>
+      Discover how Formula 1 cars transformed from simple racing machines
+      into some of the most advanced engineering achievements in the world.
+    </p>
+
+    <div class="buttons">
+      <a href="#history" class="btn btn-primary">Explore the History</a>
+      <a href="#documentary" class="btn btn-outline">Watch Documentary</a>
+    </div>
+  </div>
+</header>
+
+<!-- INTRODUCTION -->
+<section>
+  <div class="container intro-grid">
+    <div>
+      <div class="section-label">The Project</div>
+      <h2 class="section-title">More Than Just Speed</h2>
+
+      <p class="intro-text">
+        Formula 1 has always been about more than just driving fast.
+        Engineers constantly redesign cars to improve aerodynamics,
+        performance, efficiency, and driver safety. Over the decades,
+        these innovations have completely changed the sport.
+        <br><br>
+        This project explores how F1 car designs evolved and how
+        engineering helped create the cars we see racing today.
+      </p>
+    </div>
+
+    <div class="intro-panel">
+      <h3>Our Main Question</h3>
+      <p>
+        How have engineering innovations and technological advancements
+        changed the design, speed, and safety of Formula 1 cars over time?
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="container">
+    <div class="section-label">1950 — Present</div>
+    <h2 class="section-title">The Evolution of F1 Cars</h2>
+    <p class="section-description">
+      Explore the major design changes that shaped Formula 1 across
+      different generations.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-card">
+        <div class="year">1950s</div>
+        <h3>The Beginning</h3>
+        <p>
+          Early F1 cars featured front-mounted engines, narrow tires,
+          and relatively simple aerodynamic designs. Engineering
+          focused mainly on mechanical performance.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">1960s</div>
+        <h3>Rear-Engine Revolution</h3>
+        <p>
+          Teams moved engines behind the driver. This improved weight
+          distribution and handling, changing the basic layout of
+          Formula 1 cars.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">1970s</div>
+        <h3>The Aerodynamics Era</h3>
+        <p>
+          Wings became important for generating downforce. Ground-effect
+          designs also used airflow beneath the car to increase grip.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">1980s</div>
+        <h3>Turbocharged Power</h3>
+        <p>
+          Turbochargers allowed smaller engines to produce enormous
+          amounts of power, making engine development a major focus.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">1990s</div>
+        <h3>Carbon Fiber and Electronics</h3>
+        <p>
+          Lightweight carbon-fiber structures improved strength and
+          safety. Electronic systems also became increasingly important.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">2000s</div>
+        <h3>Advanced Vehicle Systems</h3>
+        <p>
+          Teams developed more advanced suspension, braking, tire,
+          and aerodynamic systems to improve performance.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">2010s</div>
+        <h3>The Hybrid Era</h3>
+        <p>
+          Hybrid power units combined combustion engines with energy
+          recovery systems to improve performance and efficiency.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="year">2020s</div>
+        <h3>Modern F1 Engineering</h3>
+        <p>
+          Modern cars use advanced aerodynamics, sophisticated
+          power units, and computer simulations to optimize performance.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATIONS -->
+<section id="innovations">
+  <div class="container">
+    <div class="section-label">Engineering Breakthroughs</div>
+    <h2 class="section-title">Innovations That Changed F1</h2>
+    <p class="section-description">
+      These technologies helped transform Formula 1 into a highly
+      advanced engineering competition.
+    </p>
+
+    <div class="innovation-grid">
+
+      <div class="innovation-card">
+        <div class="innovation-number">01 / AERODYNAMICS</div>
+        <h3>Downforce and Wings</h3>
+        <p>
+          Wings and aerodynamic surfaces push cars toward the track,
+          increasing tire grip and allowing faster cornering.
+        </p>
+      </div>
+
+      <div class="innovation-card">
+        <div class="innovation-number">02 / POWER</div>
+        <h3>Engine Technology</h3>
+        <p>
+          Engine development moved from early naturally aspirated
+          designs to turbocharged and modern hybrid power units.
+        </p>
+      </div>
+
+      <div class="innovation-card">
+        <div class="innovation-number">03 / MATERIALS</div>
+        <h3>Carbon Fiber</h3>
+        <p>
+          Carbon fiber provides a strong and lightweight structure,
+          helping improve vehicle performance and driver protection.
+        </p>
+      </div>
+
+      <div class="innovation-card">
+        <div class="innovation-number">04 / SAFETY</div>
+        <h3>The Halo System</h3>
+        <p>
+          The Halo is a protective structure around the cockpit
+          designed to help protect drivers from certain impacts.
+        </p>
+      </div>
+
+      <div class="innovation-card">
+        <div class="innovation-number">05 / ENERGY</div>
+        <h3>Energy Recovery</h3>
+        <p>
+          Hybrid systems recover energy during braking and use it
+          to provide additional power to the car.
+        </p>
+      </div>
+
+      <div class="innovation-card">
+        <div class="innovation-number">06 / COMPUTING</div>
+        <h3>Computer Simulations</h3>
+        <p>
+          Engineers use simulations and data analysis to study airflow,
+          test designs, and make cars more efficient.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTARY -->
+<section id="documentary">
+  <div class="container">
+    <div class="section-label">Watch Our Project</div>
+    <h2 class="section-title">The Documentary</h2>
+    <p class="section-description">
+      See how Formula 1 engineering developed through the decades.
+    </p>
+
+    <div class="video-container">
+      <div class="video-placeholder">
+        <h3>Documentary Coming Soon</h3>
+        <p>
+          Our documentary video will be displayed here.
+          Replace this section with your video when it is ready.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH LINKS -->
+<section id="links">
+  <div class="container">
+    <div class="section-label">Further Research</div>
+    <h2 class="section-title">Explore the World of F1</h2>
+    <p class="section-description">
+      Visit these official websites to learn more about Formula 1,
+      engineering, and racing teams.
+    </p>
+
+    <div class="links-grid">
+
+      <a class="link-card" href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer">
+        <h3>Formula 1</h3>
+        <p>Official F1 news, race information, teams, and history.</p>
+        <span class="link-arrow">Visit Website ↗</span>
+      </a>
+
+      <a class="link-card" href="https://www.fia.com/" target="_blank" rel="noopener noreferrer">
+        <h3>FIA</h3>
+        <p>Learn about motorsport regulations and safety standards.</p>
+        <span class="link-arrow">Visit Website ↗</span>
+      </a>
+
+      <a class="link-card" href="https://www.redbullracing.com/" target="_blank" rel="noopener noreferrer">
+        <h3>Oracle Red Bull Racing</h3>
+        <p>Explore one of Formula 1's leading racing teams.</p>
+        <span class="link-arrow">Visit Website ↗</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- REACTION GAME -->
+<section id="game">
+  <div class="container">
+    <div class="section-label">Interactive Experience</div>
+    <h2 class="section-title">Driver Reaction Test</h2>
+    <p class="section-description">
+      Formula 1 drivers need quick reactions. Test your reaction time
+      with this simple interactive challenge.
+    </p>
+
+    <div class="game-box">
+      <p>
+        Press start. Wait for the box to turn green, then click it
+        as quickly as possible. Clicking too early resets the test.
+      </p>
+
+      <button class="btn btn-primary" id="start-button" onclick="startGame()">
+        Start Test
+      </button>
+
+      <div id="reaction-area" role="button" tabindex="0"
+           aria-label="Reaction time test area"
+           onclick="handleReaction()">
+        Press Start to Begin
+      </div>
+
+      <div id="game-result" aria-live="polite">
+        Your reaction time will appear here.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits">
+  <div class="container">
+    <div class="section-label">Project Information</div>
+    <h2 class="section-title">Credits</h2>
+    <p class="credit-text">
+      Created by: Your Name<br>
+      Class: Your Class<br>
+      Project: The Evolution of Formula 1 Car Engineering
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    F1 <span>EVOLUTION</span> &nbsp; | &nbsp;
+    Exploring the engineering behind Formula 1.
+  </div>
+</footer>
+
+<script>
+let startTime;
+let timeout;
+let gameState = "idle";
+
+const area = document.getElementById("reaction-area");
+const result = document.getElementById("game-result");
+const startButton = document.getElementById("start-button");
+
+function startGame() {
+  clearTimeout(timeout);
+
+  gameState = "waiting";
+  area.className = "waiting";
+  area.textContent = "Wait for green...";
+  result.textContent = "Get ready!";
+  startButton.disabled = true;
+  startButton.textContent = "Test in Progress";
+
+  const delay = Math.random() * 3000 + 2000;
+
+  timeout = setTimeout(() => {
+    gameState = "ready";
+    area.className = "ready";
+    area.textContent = "CLICK NOW!";
+    startTime = performance.now();
+  }, delay);
+}
+
+function handleReaction() {
+  if (gameState === "waiting") {
+    clearTimeout(timeout);
+    gameState = "idle";
+    area.className = "";
+    area.textContent = "Too early! Try again.";
+    result.textContent = "Wait until the box turns green.";
+    startButton.disabled = false;
+    startButton.textContent = "Try Again";
+  }
+
+  else if (gameState === "ready") {
+    const reactionTime = Math.round(performance.now() - startTime);
+
+    gameState = "finished";
+    area.className = "";
+    area.textContent = "Test Complete!";
+    result.textContent = "Your reaction time: " + reactionTime + " ms";
+
+    startButton.disabled = false;
+    startButton.textContent = "Try Again";
+  }
+}
+
+area.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    handleReaction();
+  }
+});
+</script>
+
+</body>
+</html>
